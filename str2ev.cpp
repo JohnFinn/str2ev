@@ -21,11 +21,9 @@ int main(int argc, const char** argv)
     ev.value = Press;
     ev.code = KEY_U;
 
-    std::wstring current;
-
     std::locale::global(std::locale("en_US.utf8"));
 
-    while (getline(std::wcin, current)) {
+    for (std::wstring current; getline(std::wcin, current);) {
         for (auto c : current)
                 std::cout << std::hex << (int)c << ' ';
         std::cout << '\n';
