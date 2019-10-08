@@ -25,7 +25,7 @@ int main(int argc, const char** argv)
 
     for (std::wstring current; getline(std::wcin, current);) {
         for (auto c : current)
-                std::cout << std::hex << (int)c << ' ';
+            std::cout << std::hex << (int)c << ' ';
         std::cout << '\n';
     }
 }
