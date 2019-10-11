@@ -1,13 +1,9 @@
-#include <unistd.h>
 #include <linux/input.h>
 #include <linux/input-event-codes.h>
 
-#include <ctype.h>
-
-#include <stdio.h>
+#include <unistd.h>
 #include <locale>
 #include <iostream>
-#include <sstream>
 
 enum KEY_ACTION {
     Release = 0,
