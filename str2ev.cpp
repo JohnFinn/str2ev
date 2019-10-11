@@ -69,10 +69,10 @@ void fake_type(wchar_t symbol)
     fake_do_key(Release, KEY_LEFTCTRL);
 
     // TODO handle endiannes
-    char* bytes = reinterpret_cast<char*>(&symbol);
+    unsigned char* bytes = reinterpret_cast<unsigned char*>(&symbol);
     bool start_zeros = true;
     for (int i = 0; i < sizeof(wchar_t); ++i) {
-        char current_byte = bytes[sizeof(wchar_t) - 1 - i];
+        unsigned char current_byte = bytes[sizeof(wchar_t) - 1 - i];
         if (start_zeros) {
             if (current_byte == 0)
                 continue;
@@ -83,7 +83,7 @@ void fake_type(wchar_t symbol)
         char half2 = current_byte & 0x0f;
         fake_type_key(keys[half1]);
         fake_type_key(keys[half2]);
-        std::cerr << std::hex << (int)half1 << ' ' << std::hex << (int)half2 << '\n';
+        std::cerr << std::hex << +half1 << ' ' << std::hex << +half2 << '\n';
     }
 
     fake_type_key(KEY_ENTER);
@@ -91,6 +91,7 @@ void fake_type(wchar_t symbol)
 
 int main(int argc, const char** argv)
 {
+    std::locale::global(std::locale("en_US.utf8"));
     for (std::wstring current; getline(std::wcin, current);) {
         for (auto c : current) {
             fake_type(c);
