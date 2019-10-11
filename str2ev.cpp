@@ -51,7 +51,8 @@ void fake_do_key(KEY_ACTION action, int key)
     write(1, &ev, sizeof(ev));
 }
 
-void fake_type_key(int key) {
+void fake_type_key(int key)
+{
     fake_do_key(Press, key);
     fake_do_key(Release, key);
 }
